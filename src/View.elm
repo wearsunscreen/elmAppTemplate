@@ -3,7 +3,7 @@ module View exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onInput)
-import Types exposing (..)
+import Model exposing (..)
 
 
 view : Model -> Html Msg
@@ -19,7 +19,7 @@ view model =
 viewWelcome : Model -> Html Msg
 viewWelcome model =
     div []
-        [ text "Welcome!"
+        [ p [] [ h1 [] [ text "Welcome!" ] ]
         , button [ onClick CloseWelcomeScreen ] [ text "Ok" ]
         ]
 

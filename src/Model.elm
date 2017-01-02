@@ -1,4 +1,4 @@
-module Types exposing (..)
+module Model exposing (..)
 
 import Maybe exposing (Maybe)
 import Random exposing (Seed)

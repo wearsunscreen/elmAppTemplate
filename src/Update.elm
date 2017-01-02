@@ -1,9 +1,9 @@
-module State exposing (..)
+module Update exposing (..)
 
+import Model exposing (..)
 import Random exposing (Seed, initialSeed)
 import Task exposing (Task, perform)
 import Time exposing (now)
-import Types exposing (..)
 
 
 init : ( Model, Cmd Msg )
