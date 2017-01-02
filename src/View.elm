@@ -4,6 +4,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onInput)
 import Model exposing (..)
+import Random exposing (Seed, int, maxInt, minInt, step)
 
 
 view : Model -> Html Msg
@@ -26,21 +27,32 @@ viewWelcome model =
 
 viewStuff : Model -> Html Msg
 viewStuff model =
-    div []
-        [ input [ type_ "text", placeholder "Name", onInput Name ] []
-        , input [ type_ "password", placeholder "Password", onInput Password ] []
-        , input [ type_ "password", placeholder "Re-enter Password", onInput PasswordAgain ] []
-        , viewValidation model
-        ]
-
-
-viewValidation : Model -> Html msg
-viewValidation model =
     let
-        ( color, message ) =
-            if model.password == model.passwordAgain then
-                ( "green", "OK" )
-            else
-                ( "red", "Passwords do not match!" )
+        seed =
+            case model.randomSeed of
+                Nothing ->
+                    "unknown"
+
+                Just s ->
+                    Random.step (int minInt maxInt) s
+                        |> Tuple.first
+                        |> toString
+
+        time =
+            case model.startTime of
+                Nothing ->
+                    "unknown"
+
+                Just t ->
+                    toString t
     in
-        div [ style [ ( "color", color ) ] ] [ text message ]
+        div []
+            [ p []
+                [ text "Start time is "
+                , text time
+                ]
+            , p []
+                [ text "Your psuedo random number is  "
+                , text seed
+                ]
+            ]

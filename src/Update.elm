@@ -8,7 +8,7 @@ import Time exposing (now)
 
 init : ( Model, Cmd Msg )
 init =
-    ( Model "" "" "" Nothing Nothing, Cmd.none )
+    ( Model Nothing Nothing, Cmd.none )
 
 
 subs : Model -> Sub Msg
@@ -29,12 +29,3 @@ update msg model =
               }
             , Cmd.none
             )
-
-        Name name ->
-            ( { model | name = name }, Cmd.none )
-
-        Password password ->
-            ( { model | password = password }, Cmd.none )
-
-        PasswordAgain password ->
-            ( { model | passwordAgain = password }, Cmd.none )

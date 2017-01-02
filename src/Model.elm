@@ -6,10 +6,7 @@ import Time exposing (Time)
 
 
 type alias Model =
-    { name : String
-    , password : String
-    , passwordAgain : String
-    , randomSeed : Maybe Seed
+    { randomSeed : Maybe Seed
     , startTime : Maybe Time
     }
 
@@ -17,6 +14,3 @@ type alias Model =
 type Msg
     = CloseWelcomeScreen
     | StartApp Time
-    | Name String
-    | Password String
-    | PasswordAgain String
