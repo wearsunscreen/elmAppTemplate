@@ -2,12 +2,30 @@ module View exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Html.Events exposing (onInput)
+import Html.Events exposing (onClick, onInput)
 import Types exposing (..)
 
 
 view : Model -> Html Msg
 view model =
+    case model.startTime of
+        Nothing ->
+            viewWelcome model
+
+        Just t ->
+            viewStuff model
+
+
+viewWelcome : Model -> Html Msg
+viewWelcome model =
+    div []
+        [ text "Welcome!"
+        , button [ onClick CloseWelcomeScreen ] [ text "Ok" ]
+        ]
+
+
+viewStuff : Model -> Html Msg
+viewStuff model =
     div []
         [ input [ type_ "text", placeholder "Name", onInput Name ] []
         , input [ type_ "password", placeholder "Password", onInput Password ] []
