@@ -1,16 +1,16 @@
 module Main exposing (..)
 
-import Html exposing (program)
+import Browser exposing (document)
 import Model exposing (Model, Msg)
 import Update exposing (subs, update)
 import View exposing (view)
 
 
-main : Program Never Model Msg
+main : Program () Model Msg
 main =
-    Html.program
+    Browser.document
         { init = Update.init
-        , view = View.view
         , update = Update.update
+        , view = View.view
         , subscriptions = Update.subs
         }

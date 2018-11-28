@@ -2,15 +2,15 @@ module Model exposing (..)
 
 import Maybe exposing (Maybe)
 import Random exposing (Seed)
-import Time exposing (Time)
+import Time exposing (Posix)
 
 
 type alias Model =
     { randomSeed : Maybe Seed
-    , startTime : Maybe Time
+    , startTime : Maybe Posix
     }
 
 
 type Msg
     = CloseWelcomeScreen
-    | StartApp Time
+    | StartApp Posix

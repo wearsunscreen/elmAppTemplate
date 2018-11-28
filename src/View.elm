@@ -1,20 +1,28 @@
 module View exposing (..)
 
+import Browser exposing (Document)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onInput)
 import Model exposing (..)
 import Random exposing (Seed, int, maxInt, minInt, step)
+import String exposing (fromInt)
+import Time exposing (posixToMillis)
 
 
-view : Model -> Html Msg
+view : Model -> Document Msg
 view model =
-    case model.startTime of
-        Nothing ->
-            viewWelcome model
+    let 
+        b =  case model.startTime of
+            Nothing ->
+                viewWelcome model
 
-        Just t ->
-            viewStuff model
+            Just t ->
+                viewStuff model
+    in 
+    { title = "Elm App Template"
+    , body =  [b]
+    }
 
 
 viewWelcome : Model -> Html Msg
@@ -36,7 +44,7 @@ viewStuff model =
                 Just s ->
                     Random.step (int minInt maxInt) s
                         |> Tuple.first
-                        |> toString
+                        |> fromInt
 
         time =
             case model.startTime of
@@ -44,7 +52,7 @@ viewStuff model =
                     "unknown"
 
                 Just t ->
-                    toString t
+                    t |> posixToMillis |> fromInt
     in
         div []
             [ p []
