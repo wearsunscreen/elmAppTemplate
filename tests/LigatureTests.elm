@@ -1,4 +1,4 @@
-module LigatureTests exposing (..)
+module LigatureTests exposing (suite)
 
 import Expect exposing (Expectation)
 import Fuzz exposing (Fuzzer, int, list, string)
@@ -16,7 +16,8 @@ suite =
                             ((==) True)
                             [ 1 >= 1
                             , 1 <= 1
-                            , 1 /= 0
+
+                            -- , 1 /= 0 -- bizareness - 1 /= 0 evaluates to 1 : Bool - I would expect True : Bool
                             , 1 :: [ 2, 3 ] == [ 1, 2, 3 ]
                             ]
                         )
@@ -29,7 +30,7 @@ suite =
                         h =
                             g >> (\n -> n * 4)
                     in
-                        Expect.equal (h 2) (2 * 2 * 3 * 4)
+                    Expect.equal (h 2) (2 * 2 * 3 * 4)
             , test "simliar looking character are distinct" <|
                 \_ ->
                     let
@@ -42,6 +43,6 @@ suite =
                         z =
                             "1LILO0"
                     in
-                        Expect.notEqual x y
+                    Expect.notEqual x y
             ]
         ]
