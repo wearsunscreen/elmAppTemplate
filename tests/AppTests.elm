@@ -1,4 +1,4 @@
-module TestStub exposing (suite)
+module AppTests exposing (suite)
 
 import Expect exposing (true)
 import Fuzz exposing (int)
