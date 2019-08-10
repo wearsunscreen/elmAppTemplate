@@ -24,22 +24,17 @@ type Msg
 
 main : Program () Model Msg
 main =
-    Browser.document
+    Browser.element
         { init = init
         , update = update
         , view = view
-        , subscriptions = subs
+        , subscriptions = \_ -> Sub.none
         }
 
 
 init : () -> ( Model, Cmd Msg )
 init _ =
     ( Model Nothing Nothing, Cmd.none )
-
-
-subs : Model -> Sub Msg
-subs model =
-    Sub.none
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -57,20 +52,14 @@ update msg model =
             )
 
 
-view : Model -> Document Msg
+view : Model -> Html Msg
 view model =
-    let
-        b =
-            case model.startTime of
-                Nothing ->
-                    viewWelcome model
+    case model.startTime of
+        Nothing ->
+            viewWelcome model
 
-                Just t ->
-                    viewStuff model
-    in
-    { title = "Elm App Template"
-    , body = [ b ]
-    }
+        Just t ->
+            viewStuff model
 
 
 viewStuff : Model -> Html Msg
